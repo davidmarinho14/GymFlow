@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GymFlow — Gerenciador de Treinos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <h1 class="logo">Gym<span>Flow</span></h1>
+      <p class="tagline">Seus treinos, no seu ritmo.</p>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <section class="card" aria-labelledby="form-title">
+      <h2 id="form-title">Novo treino</h2>
+      <form id="treino-form" novalidate>
+        <input type="hidden" id="treino-id">
+
+        <label for="nome">Nome do exercício</label>
+        <input id="nome" name="nome" type="text" maxlength="120" placeholder="Ex.: Supino reto" required>
+
+        <label for="grupoMuscular">Grupo muscular</label>
+        <select id="grupoMuscular" name="grupoMuscular" required>
+          <option value="">Selecione…</option>
+          <option>Peito</option>
+          <option>Costas</option>
+          <option>Ombros</option>
+          <option>Bíceps</option>
+          <option>Tríceps</option>
+          <option>Pernas</option>
+          <option>Glúteos</option>
+          <option>Abdômen</option>
+          <option>Cardio</option>
+        </select>
+
+        <div class="row">
+          <div>
+            <label for="series">Séries</label>
+            <input id="series" name="series" type="number" min="1" max="100" value="3" required>
+          </div>
+          <div>
+            <label for="repeticoes">Repetições</label>
+            <input id="repeticoes" name="repeticoes" type="number" min="1" max="1000" value="12" required>
+          </div>
+        </div>
+
+        <p id="form-error" class="error" role="alert" hidden></p>
+
+        <div class="actions">
+          <button type="submit" id="btn-salvar" class="btn btn--primary">Cadastrar treino</button>
+          <button type="button" id="btn-cancelar" class="btn btn--ghost" hidden>Cancelar edição</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card card--wide" aria-labelledby="lista-title">
+      <div class="list-head">
+        <h2 id="lista-title">Meus treinos</h2>
+        <div class="filters" role="group" aria-label="Filtrar treinos">
+          <button class="chip is-active" data-filtro="todos">Todos</button>
+          <button class="chip" data-filtro="pendentes">Pendentes</button>
+          <button class="chip" data-filtro="concluidos">Concluídos</button>
+        </div>
+      </div>
+      <p id="resumo" class="resumo" aria-live="polite"></p>
+      <ul id="lista" class="lista"></ul>
+      <p id="vazio" class="vazio" hidden>Nenhum treino por aqui ainda. Cadastre o primeiro!</p>
+    </section>
+
+    <!-- Área reservada para a biblioteca de exercícios (rota /api/exercicios, a cargo do Luiz) -->
+    <section class="card card--full" id="biblioteca" aria-labelledby="biblioteca-title">
+      <h2 id="biblioteca-title">Biblioteca de exercícios</h2>
+      <p class="placeholder">Em breve: busque exercícios e adicione-os aos seus treinos com um clique.</p>
+      <div id="biblioteca-conteudo"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
