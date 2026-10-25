@@ -4,7 +4,7 @@ app.use(express.json());
 app.use(express.static('public'));
 app.get('/api/health', (_req, res) => res.json({ status: 'ok', projeto: 'GymFlow' }));
 app.use('/api/treinos', require('./routes/treinos'));
-// Luiz: importar e registrar aqui o router de exercícios em /api/exercicios.
+app.use('/api/exercicios', require('./routes/exercicios'));
 app.use((err, _req, res, _next) => {
   if (err instanceof SyntaxError && err.status === 400) return res.status(400).json({ erro: 'JSON inválido.' });
   console.error(err);
