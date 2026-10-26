@@ -202,5 +202,93 @@
       render();
     }));
 
+  // ---------- Biblioteca de exercícios (Wger via /api/exercicios) ----------
+  const API_EXERCICIOS = '/api/exercicios?limit=20';
+  const IDIOMA_PT = 7; // ids de idioma da Wger
+  const IDIOMA_EN = 2;
+
+  // Categorias da Wger (em inglês) -> rótulo em português exibido no card.
+  const ROTULOS = {
+    Abs: 'Abdômen', Arms: 'Braços', Back: 'Costas', Calves: 'Panturrilha',
+    Cardio: 'Cardio', Chest: 'Peito', Legs: 'Pernas', Shoulders: 'Ombros',
+  };
+  // Categoria -> grupo do formulário. "Arms" fica de fora: pode ser bíceps ou tríceps.
+  const GRUPO_FORM = {
+    Abs: 'Abdômen', Back: 'Costas', Calves: 'Pernas', Cardio: 'Cardio',
+    Chest: 'Peito', Legs: 'Pernas', Shoulders: 'Ombros',
+  };
+
+  const bibStatus = $('biblioteca-status');
+  const bibLista = $('biblioteca-lista');
+  const bibCredito = $('biblioteca-credito');
+  const bibRecarregar = $('biblioteca-recarregar');
+
+  // Nome em português; se não houver, inglês; se não houver, a primeira tradução.
+  function nomeDoExercicio(ex) {
+    const traducoes = (ex.translations || []).filter(t => t && typeof t.name === 'string' && t.name.trim());
+    const idioma = t => (t.language && typeof t.language === 'object' ? t.language.id : t.language);
+    const achado = traducoes.find(t => idioma(t) === IDIOMA_PT)
+      || traducoes.find(t => idioma(t) === IDIOMA_EN)
+      || traducoes[0];
+    return achado ? achado.name.trim() : '';
+  }
+
+  function usarNoFormulario(nome, categoria) {
+    $('nome').value = nome.slice(0, 120);
+    if (GRUPO_FORM[categoria]) $('grupoMuscular').value = GRUPO_FORM[categoria];
+    showFormError('');
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    $('nome').focus();
+    toast('Nome preenchido no formulário.');
+  }
+
+  function renderExercicio(ex) {
+    const nome = nomeDoExercicio(ex);
+    if (!nome) return null;
+    const categoria = ex.category && ex.category.name;
+    const rotulo = categoria ? (ROTULOS[categoria] || categoria) : '';
+    return el('li', { class: 'biblioteca__item' },
+      el('div', {},
+        el('div', { class: 'biblioteca__nome' }, nome),
+        rotulo ? el('div', { class: 'biblioteca__meta' }, rotulo) : ''),
+      el('button', {
+        type: 'button', class: 'btn btn--sm',
+        'aria-label': `Usar "${nome}" no formulário`,
+        onclick: () => usarNoFormulario(nome, categoria),
+      }, 'Usar no formulário'));
+  }
+
+  function statusBiblioteca(msg, isError = false) {
+    bibStatus.textContent = msg;
+    bibStatus.classList.toggle('is-error', isError);
+    bibStatus.hidden = !msg;
+  }
+
+  async function carregarBiblioteca() {
+    bibRecarregar.disabled = true;
+    bibLista.hidden = true;
+    bibCredito.hidden = true;
+    statusBiblioteca('Carregando exercícios…');
+    try {
+      const dados = await request(API_EXERCICIOS);
+      const itens = (dados.results || []).map(renderExercicio).filter(Boolean);
+      if (!itens.length) {
+        statusBiblioteca('Nenhum exercício disponível no momento.');
+        return;
+      }
+      bibLista.replaceChildren(...itens);
+      bibLista.hidden = false;
+      bibCredito.hidden = false;
+      statusBiblioteca('');
+    } catch (err) {
+      statusBiblioteca('Não foi possível carregar a biblioteca de exercícios agora. Tente novamente em instantes.', true);
+    } finally {
+      bibRecarregar.disabled = false;
+    }
+  }
+
+  bibRecarregar.addEventListener('click', carregarBiblioteca);
+
   carregar();
+  carregarBiblioteca();
 })();

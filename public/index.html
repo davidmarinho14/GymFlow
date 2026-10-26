@@ -71,11 +71,15 @@
       <p id="vazio" class="vazio" hidden>Nenhum treino por aqui ainda. Cadastre o primeiro!</p>
     </section>
 
-    <!-- Área reservada para a biblioteca de exercícios (rota /api/exercicios, a cargo do Luiz) -->
+    <!-- Biblioteca de exercícios (dados da Wger via /api/exercicios) -->
     <section class="card card--full" id="biblioteca" aria-labelledby="biblioteca-title">
-      <h2 id="biblioteca-title">Biblioteca de exercícios</h2>
-      <p class="placeholder">Em breve: busque exercícios e adicione-os aos seus treinos com um clique.</p>
-      <div id="biblioteca-conteudo"></div>
+      <div class="list-head">
+        <h2 id="biblioteca-title">Biblioteca de exercícios</h2>
+        <button type="button" id="biblioteca-recarregar" class="btn btn--sm">Recarregar</button>
+      </div>
+      <p id="biblioteca-status" class="placeholder" role="status" aria-live="polite">Carregando exercícios…</p>
+      <ul id="biblioteca-lista" class="biblioteca" hidden></ul>
+      <p class="credito" id="biblioteca-credito" hidden>Dados de exercícios: <a href="https://wger.de" target="_blank" rel="noopener">wger.de</a> (licença aberta).</p>
     </section>
   </main>
 
