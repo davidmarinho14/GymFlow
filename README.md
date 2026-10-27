@@ -108,7 +108,7 @@ Apenas nessa branch de demonstração, a expectativa do teste de health check fo
 
 A PR foi fechada **sem merge**, mantendo a branch `main` com o código funcional.
 
-**Evidência visual:** [print do bloqueio da PR #7](docs/evidencias/pr-7-ci-bloqueado.png) — inserir a imagem nesse caminho antes de mesclar esta atualização.
+**Evidência visual:** [print do bloqueio da PR #7](docs/evidencias/pr-7-ci-bloqueado.png.png) — inserir a imagem nesse caminho antes de mesclar esta atualização.
 
 **CI funcionando:** [execução bem-sucedida do GitHub Actions](https://github.com/davidmarinho14/GymFlow/actions/runs/40444787191).
 
