@@ -102,9 +102,13 @@ A consulta à Wger depende de conexão com a internet e da disponibilidade do se
 
 ### Pull request bloqueada pelo CI
 
-**Evidência ainda pendente:** nas execuções consultadas do GitHub Actions, todas as verificações disponíveis foram concluídas com sucesso. Não foi identificada uma PR efetivamente bloqueada pelo CI, portanto não seria correto apresentar um print de execução bem-sucedida como se fosse bloqueio.
+Foi criada a **[PR #7 — Demonstração acadêmica: CI bloqueando merge](https://github.com/davidmarinho14/GymFlow/pull/7)**, a partir da branch temporária `demo/ci-bloqueado`, para demonstrar o funcionamento das verificações obrigatórias da branch `main`.
 
-Para atender a este item, o grupo precisa produzir ou localizar uma **evidência real** de PR bloqueada por verificação obrigatória do CI e inserir o print no repositório (por exemplo, `docs/evidencias/pr-bloqueada-ci.png`), atualizando esta seção com o link da imagem e a PR correspondente. Uma verificação vermelha, isoladamente, não prova bloqueio se não houver regra de proteção exigindo a aprovação do CI.
+Apenas nessa branch de demonstração, a expectativa do teste de health check foi alterada intencionalmente de HTTP `200` para `500`. Como a aplicação respondeu corretamente `200`, os jobs **CI / test (pull_request)** e **CI / test (push)** falharam. Ambos apareciam como **Required**, e o botão **Merge pull request** ficou desabilitado, comprovando que a Ruleset impedia a integração com testes reprovados.
+
+A PR foi fechada **sem merge**, mantendo a branch `main` com o código funcional.
+
+**Evidência visual:** [print do bloqueio da PR #7](docs/evidencias/pr-7-ci-bloqueado.png.png) — inserir a imagem nesse caminho antes de mesclar esta atualização.
 
 **CI funcionando:** [execução bem-sucedida do GitHub Actions](https://github.com/davidmarinho14/GymFlow/actions/runs/40444787191).
 
