@@ -23,12 +23,12 @@ Aplicação web responsiva para organizar treinos de academia, desenvolvida como
 
 ## Integrantes e responsabilidades
 
-| Integrante | Responsabilidade |
-| --- | --- |
-| David Richard Marinho | Estrutura inicial, backend de treinos, SQLite, integração e documentação |
-| Luiz Vinícius Moraes dos Santos | Integração da API externa Wger e rota de exercícios |
-| Eduardo Simari de Lourenço Rocha | Interface web responsiva e biblioteca de exercícios no frontend |
-| Lukas Ferreira de Souza | Testes automatizados, GitHub Actions e Docker |
+| Integrante | Matrícula | Usuário GitHub | Funcionalidade / responsabilidade | Principal PR |
+| --- | --- | --- | --- | --- |
+| David Richard Marinho | 22610620 | [@davidmarinho14](https://github.com/davidmarinho14) | Backend de treinos, SQLite, estrutura inicial e documentação | [#1 — Backend](https://github.com/davidmarinho14/GymFlow/pull/1) |
+| Luiz Vinícius Moraes dos Santos | 22609501 | [@luizvncsmds](https://github.com/luizvncsmds) | Integração da API Wger | [#4 — API externa](https://github.com/davidmarinho14/GymFlow/pull/4) |
+| Eduardo Simari de Lourenço Rocha | 22610027 | [@EduardoSimari](https://github.com/EduardoSimari) | Interface responsiva e biblioteca de exercícios | [#3 — Frontend](https://github.com/davidmarinho14/GymFlow/pull/3) (complemento [#5](https://github.com/davidmarinho14/GymFlow/pull/5)) |
+| Lukas Ferreira de Souza | 22609192 | [@lukasferreira00](https://github.com/lukasferreira00) | Testes automatizados, GitHub Actions e Docker | [#6 — Testes, CI e Docker](https://github.com/davidmarinho14/GymFlow/pull/6) |
 
 ## Como executar localmente
 
@@ -97,6 +97,20 @@ docker run --rm -p 3000:3000 -v gymflow-data:/data gymflow
 | GET | `/api/exercicios?limit=20&offset=0` | Consultar exercícios da Wger |
 
 A consulta à Wger depende de conexão com a internet e da disponibilidade do serviço externo.
+
+## Evidências de integração contínua e colaboração
+
+### Pull request bloqueada pelo CI
+
+**Evidência ainda pendente:** nas execuções consultadas do GitHub Actions, todas as verificações disponíveis foram concluídas com sucesso. Não foi identificada uma PR efetivamente bloqueada pelo CI, portanto não seria correto apresentar um print de execução bem-sucedida como se fosse bloqueio.
+
+Para atender a este item, o grupo precisa produzir ou localizar uma **evidência real** de PR bloqueada por verificação obrigatória do CI e inserir o print no repositório (por exemplo, `docs/evidencias/pr-bloqueada-ci.png`), atualizando esta seção com o link da imagem e a PR correspondente. Uma verificação vermelha, isoladamente, não prova bloqueio se não houver regra de proteção exigindo a aprovação do CI.
+
+**CI funcionando:** [execução bem-sucedida do GitHub Actions](https://github.com/davidmarinho14/GymFlow/actions/runs/40444787191).
+
+### Conflitos de merge
+
+**Não há relato confirmado de conflito de merge resolvido** no histórico analisado. Se o grupo não enfrentou conflitos, registrar: *"Durante a integração das branches por pull requests, não houve conflito de merge que precisasse ser resolvido manualmente."* Caso algum integrante tenha resolvido um conflito real, substituir esta frase pelo relato com arquivos envolvidos, causa e procedimento adotado.
 
 ## Colaboração
 
