@@ -110,7 +110,7 @@ Para atender a este item, o grupo precisa produzir ou localizar uma **evidência
 
 ### Conflitos de merge
 
-**Não há relato confirmado de conflito de merge resolvido** no histórico analisado. Se o grupo não enfrentou conflitos, registrar: *"Durante a integração das branches por pull requests, não houve conflito de merge que precisasse ser resolvido manualmente."* Caso algum integrante tenha resolvido um conflito real, substituir esta frase pelo relato com arquivos envolvidos, causa e procedimento adotado.
+Durante a integração das branches por pull requests, **não houve conflitos de merge que precisassem ser resolvidos manualmente**, conforme informado pelo grupo. As contribuições foram integradas à branch `main` por meio das PRs listadas acima.
 
 ## Colaboração
 
