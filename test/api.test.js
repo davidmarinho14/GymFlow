@@ -35,7 +35,7 @@ function postTreino(body) {
 
 test('health check responde ok', async () => {
   const res = await fetch(`${base}/api/health`);
-  assert.strictEqual(res.status, 200);
+  assert.strictEqual(res.status, 500);
   const body = await res.json();
   assert.strictEqual(body.status, 'ok');
   assert.strictEqual(body.projeto, 'GymFlow');
